@@ -1,0 +1,4 @@
+interface:
+  display_name: "LinkedIn Post Generator"
+  short_description: "Write Andreas-style LinkedIn posts and ideas"
+  default_prompt: "Use $linkedin-post-generator to create, review, or brainstorm LinkedIn content in Andreas's voice."

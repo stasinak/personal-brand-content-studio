@@ -60,6 +60,37 @@ Do not rely on chat history alone as the storage location.
 
 ---
 
+### GOOGLE DRIVE SOURCE OF TRUTH
+
+If Google Drive integration is configured for this repository, treat Google Drive as the upstream source of truth for:
+
+- `/ideas`
+- `/post`
+- `/output` as the remote destination for generated files
+
+Operationally, work through the local repository mirror:
+
+- pull the latest Google Drive content into the local repo first
+- read the local mirrored files
+- generate output
+- save the result locally in `/output`
+
+Do not assume chat history contains the latest source material if Google Drive is being used for this workflow.
+
+For Idea Generation specifically:
+
+- use the Drive-backed contents of `/ideas`
+- if needed and available, refresh the local mirror from Drive before generating ideas
+
+For Post Creation specifically:
+
+- use the Drive-backed contents of `/post`
+- `post/Ανδρέας.docx` remains the style source of truth unless the user explicitly replaces it
+
+The local `/output` folder remains the immediate working output location even when Drive is the upstream source.
+
+---
+
 ### INITIAL BEHAVIOR FOR WRITING TASKS (MANDATORY)
 
 At the start of every LinkedIn writing interaction, ask the user:
