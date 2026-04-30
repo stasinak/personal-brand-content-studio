@@ -10,20 +10,28 @@ The full vision lives in `ROADMAP.md` (section "North Star"). The architecture l
 
 Detect the appropriate domain from the user's input and apply the matching domain's rules. Use the trigger heuristics below; if intent is ambiguous, ASK once before proceeding.
 
+### Disambiguation policy
+
+**Multiple active domains overlap on generic keywords** ("Idea Generation", "Script", "Improve") between `linkedin` and `short-form-video`. **Never auto-route ambiguous inputs.** When the input doesn't carry an explicit domain signal, ASK first:
+
+> "Σε ποιο domain το θέλεις: LinkedIn post / Short-form video / Comments?"
+
+Only auto-route when the signal is unambiguous (see table below).
+
 ### Trigger heuristics
 
 | Input pattern | Domain | Notes |
 |---|---|---|
-| YouTube URL or playlist URL | `linkedin` (Mode 4: Video Repurposing) | Unless user explicitly says it's for podcast / short / other domain |
-| "Idea Generation" / "Post Creation" / "Post Review" / mode 1-2-3 keywords | `linkedin` | LinkedIn writing modes |
-| Brainstorm / posts / hooks / CV / interview / hiring topics | `linkedin` (infer mode) | |
-| Pasted comment text or comment URL (YouTube / LinkedIn / Instagram) | `comments` | Reply drafting in Andreas's voice |
+| Explicit "shorts" / "Reel" / "TikTok" / "short-form" / "video script" / "60-second" | `short-form-video` | Auto-route |
+| Explicit "LinkedIn post" / "post creation" / "post review" | `linkedin` | Auto-route |
+| Pasted comment text or comment URL (YouTube / LinkedIn / Instagram) | `comments` | Auto-route |
+| YouTube URL / playlist URL | ASK first | Could be `linkedin` (video → posts) OR `short-form-video` (long → shorts repurposing) |
+| Generic "Idea Generation" / "give me ideas" / "Script" / "Improve" without domain hint | ASK first | Overlaps `linkedin` and `short-form-video` |
+| Brainstorm / hooks / CV / interview / hiring topics without domain hint | ASK first | Could fit either content domain |
 | Pasted email thread | `email` (future) | Domain not active yet |
 | Voice memo file (.m4a, .mp3) | `knowledge-capture` (future) | Domain not active yet |
 | Meeting transcript paste | `meeting-notes` (future) | Domain not active yet |
 | Repo setup / debugging / file ops | none | Act as a normal coding assistant |
-
-If the user gives a URL or paste that doesn't clearly map, ASK: "Σε ποιο domain το θέλεις: <list of active domains>?".
 
 For non-content tasks (repo setup, scripting, debugging), apply normal coding-assistant behavior — do NOT force domain rules onto unrelated work.
 
@@ -33,8 +41,9 @@ For non-content tasks (repo setup, scripting, debugging), apply normal coding-as
 
 - ✅ **LinkedIn Content** — see `domains/linkedin/AGENTS.md` (Modes 1-4: Idea Generation, Post Creation, Post Review, Video Repurposing)
 - ✅ **Comments** — see `domains/comments/AGENTS.md` (reply drafting for YouTube / LinkedIn / Instagram)
+- ✅ **Short-Form Video** — see `domains/short-form-video/AGENTS.md` (Modes 1-4: Idea Generation, Script Generation, Improve Script, Q&A)
 
-Future domains will be added here as they come online (`email`, `meeting-notes`, `short-form-video`, etc. — see `ROADMAP.md` for the full list).
+Future domains will be added here as they come online (`email`, `meeting-notes`, `knowledge-capture`, etc. — see `ROADMAP.md` for the full list).
 
 ---
 
@@ -49,3 +58,5 @@ Future domains will be added here as they come online (`email`, `meeting-notes`,
 @domains/linkedin/AGENTS.md
 
 @domains/comments/AGENTS.md
+
+@domains/short-form-video/AGENTS.md
