@@ -161,6 +161,44 @@ If the user provides a draft and asks a specific question (e.g., "is this hook t
 
 ---
 
+## MODE 5: Repurpose Long-Form Video (free remixing)
+
+**Input:** YouTube URL of a long-form video (own channel, guest appearance, or third-party).
+
+**Workflow:**
+
+1. **Fetch the transcript** via `skills/youtube-transcript-fetcher/fetch.py` and save to `output/_transcripts/<YYYYMMDD>-<videoid>.md`. Skip if already cached for this video.
+2. **Identify 3 remix candidates** by default (user can request more or fewer). Pick from:
+   - Contrarian / hot-take moments
+   - Memorable personal stories with emotional weight
+   - Counter-intuitive claims
+   - Specific data points or examples
+   - Moments that could stand alone as a 60-second short
+3. **For each candidate, generate a fresh Mode 2 script** — apply ALL Mode 2 rules (hook → value → CTA, 130-150 words target, signature closer, register pick, etc.). Treat the candidate as an **idea seed**, NOT as text to clip verbatim. The script is original; the long-form provides the angle.
+4. **Save** all 3 scripts to `output/shorts/scripts.md` (newest at top), each with a `**Source:**` line pointing to the video + approximate timestamp + the anchor quote that inspired it.
+5. **Deliver** the 3 scripts in chat, separated by `---`, no preamble.
+
+**Per-script metadata block:**
+
+```markdown
+## YYYY-MM-DD — <short title>
+
+**Idea:** Repurposed from long-form video
+**Source:** <video URL> @ <approx timestamp>
+**Anchor quote:** "<short verbatim quote from the transcript that seeded this script>"
+**Register:** provocateur | mentor | storyteller
+**Hook strategy:** <one line>
+**Word count:** N
+
+<script>
+
+---
+```
+
+**Why "free remixing" not "tight clipping":** the goal is a polished standalone short, not an edit-cut from the long-form footage. The viewer of the short doesn't see the original — the script must work in isolation.
+
+---
+
 ## CRITICAL OUTPUT RULES
 
 When delivering a script in chat (Mode 2 or 3):
