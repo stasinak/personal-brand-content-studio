@@ -276,43 +276,42 @@ Cross-domain tracking: ιδέα → script/post → published → engagement. Σ
 
 ## 5. Google Drive integration
 
-Σύνδεση του project με το Google Drive ώστε να γράφει/διαβάζει απευθείας από εκεί. Λύνει 4 προβλήματα μαζί.
+Σύνδεση του project με το Google Drive ώστε να γράφει/διαβάζει απευθείας από εκεί.
 
 **Why:**
 - **Mobile access** — γράφεις/διορθώνεις post ή idea από κινητό μέσω Drive app, όχι μόνο desktop + git
 - **Cross-device sync χωρίς git workflow** — χωρίς `git pull` σε κάθε συσκευή
 - **CSV tracking → Google Sheets** — το `output/tracking.csv` (Section 4) ανοίγει απευθείας ως Sheet, sort/filter/pivot live
-- **Voice memo capture pipeline** — υπαγορεύεις στο κινητό → Drive folder → drain skill το γυρνάει σε idea στο `idea-pool.md` (το είχες ζητήσει σε προηγούμενη συνεδρία ως pending)
+- **Voice memo capture pipeline** — υπαγορεύεις στο κινητό → Drive folder → drain skill το γυρνάει σε idea στο `idea-pool.md`
 
-### Approach options (tradeoffs)
+### ✅ Phase 0 done (2026-05-01) — basic CLI integration
 
-| Approach | Pros | Cons |
-|---|---|---|
-| **(a) MCP server** (Claude έχει Google Drive MCP διαθέσιμο) | Native — read/write μέσα από conversation. No daemon. On-demand. | Δουλεύει μόνο μέσα από Claude. Δεν βοηθάει για mobile-only edits. |
-| **(b) Local sync (Drive Desktop / rclone)** | Transparent — ο κώδικας δεν αλλάζει, files εμφανίζονται μόνα τους στο Drive. Mobile flow δουλεύει. | Sync delays. Conflict resolution αν editing από 2 μεριές. Daemon να τρέχει. |
-| **(c) Drive API direct (Python skill)** | Full control. No daemon. Reuse του OAuth setup που ήδη έχουμε για YouTube Data API. | Extra code layer. Όχι transparent — κάθε save χρειάζεται explicit API call. |
+Custom skill at `skills/google-drive/drive.py` (PEP 723, OAuth 2.0 Desktop client). Subcommands: `auth`, `whoami`, `list`, `find`, `upload`, `download`, `mkdir`. Token cached in `.google-drive-token.json` (gitignored), auto-refresh via refresh_token.
 
-### Recommended: hybrid (a) + (b)
+**Why custom skill, not Claude MCP:** το Claude MCP connector ήταν bound στο work account (`andreas@baresquare.com`) και η αλλαγή account μέσω Claude UI δεν ήταν επιλογή. Custom skill δίνει: full account control, scriptable (cron/CI), reusable σε CI/CD pipeline για το upcoming scheduling work.
 
-- **(a) MCP** για interactive Claude-driven edits — επόμενες συνεδρίες διαβάζουν published posts / scripts / ideas χωρίς git pull
-- **(b) Drive Desktop sync** για mobile-to-desktop flow — voice memo upload από κινητό, drain από desktop όταν βρίσκεσαι σε Claude session
+**Setup:** GCP project `personal-brand-content` στο `andreasstasi92@gmail.com`, OAuth consent screen σε **Testing** mode (μόνο το personal email στα test users — self-protecting από κατά λάθος αλλαγή account).
 
-### Phase plan
+**Hard rule (locked):** το skill ΔΕΝ έχει delete/trash subcommand και δεν θα αποκτήσει ποτέ. Διαγραφές γίνονται μόνο manually από το Drive UI. Ισχύει για όλα τα cloud-integration skills (LinkedIn, Drive, future).
 
-1. **Set up Drive folder structure** — mirror του local `output/` (`output/ready-posts.md`, `output/shorts/`, `output/comment-replies/`, `output/_transcripts/`, `output/tracking.csv`)
-2. **Test MCP read** — επιβεβαίωση ότι το Google Drive MCP server διαβάζει τα files σωστά μέσα από Claude session
-3. **Voice memo pipeline** — `output/voice-memos/inbox/` (synced από κινητό) → drain skill που τραβάει το audio, transcribes (το `youtube-transcript-fetcher` Whisper logic μπορεί να επαναχρησιμοποιηθεί), προσθέτει entry στο `idea-pool.md`, μετακινεί σε `output/voice-memos/processed/`
-4. **Optional bidirectional sync** για `ready-posts.md` — edit από οποιαδήποτε συσκευή, με conflict resolution policy
-5. **CSV → Sheets** — το `tracking.csv` της Section 4 γίνεται live Sheet, με filter views ανά domain/status/topic
+### Επόμενες phases
 
-### Decisions να ληφθούν όταν πάμε υλοποίηση
+1. **Drive folder structure** — `Personal Brand Content/` root, mirror του local `output/` (subfolders: `ready-posts/`, `shorts/`, `comment-replies/`, `_transcripts/`, `voice-memos/inbox/`, `voice-memos/processed/`)
+2. **Sync helper** — `drive.py sync-up <local-path>` που ανεβάζει αρχείο/φάκελο στο corresponding Drive folder, με filename-based idempotency (δεν re-uploadάρει αν unchanged)
+3. **Voice memo pipeline** — drain skill που:
+   - Λίστα από `Personal Brand Content/voice-memos/inbox/` (κατεβάζεις audio από κινητό)
+   - Transcribe με το υπάρχον Whisper logic (`skills/youtube-transcript-fetcher/fetch.py`)
+   - Append entry σε `idea-pool.md` με τη μεταγραφή σαν seed
+   - Move το audio σε `voice-memos/processed/` (move = create σε νέο folder + manual cleanup του παλιού — δεν διαγράφουμε από CLI)
+4. **CSV → Sheets** — μετά το Tracking & Index (Section 4), το `tracking.csv` γίνεται live Sheet (auto-conversion στο upload μέσω `text/csv` → `application/vnd.google-apps.spreadsheet`)
 
-- **Folder structure στο Drive:** mirror 1:1 με το local, ή flatten με tags;
-- **Auth:** OAuth (όπως ήδη στο YouTube setup — refresh token persisted) ή service account;
-- **Conflict resolution:** last-write-wins, merge, ή lock-while-editing;
-- **Sync trigger:** every save automatic, batched ανά X λεπτά, ή manual `sync` command;
-- **Voice memo language detection:** auto-detect (όπως το έχουμε ήδη στο fetch.py) ή force Greek;
-- **Privacy:** όλο το `output/` σε Drive ή μόνο published material; (γιατί στο Drive, αν shared, κάποιοι μπορούν να τα δουν)
+### Decisions ακόμα ανοιχτές
+
+- **Folder structure στο Drive:** mirror 1:1 με το local, ή flatten με tags; (Πρόταση: mirror)
+- **Sync trigger:** every save automatic, batched ανά X λεπτά, ή manual `sync` command; (Πρόταση: manual πρώτα, automation μετά)
+- **Voice memo language detection:** auto-detect (όπως ήδη στο fetch.py) ή force Greek;
+- **Privacy:** όλο το `output/` σε Drive ή μόνο published material; (Πρόταση: όλο, αλλά το Drive folder παραμένει private — όχι shared)
+- **Token refresh σε CI/CD:** όταν θα τρέχει σε GitHub Actions, πώς διατηρείται το refresh_token σε encrypted Secret χωρίς manual intervention
 
 ---
 
