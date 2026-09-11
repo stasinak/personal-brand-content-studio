@@ -83,6 +83,16 @@ Save every LinkedIn content task that produces usable output locally in `/output
 - After adding the post, REMOVE the source idea block from `output/idea-pool.md` and add a one-line entry under the "Used (history)" section
 - If there is no source idea (ad-hoc post), no removal needed but still log under "Used (history)" in the pool
 
+**Post Publishing (archive after going live):**
+- Once a post from `output/ready-posts.md` is published on LinkedIn, MOVE the entry to `output/published-posts.md` at the TOP (newest first)
+- Preserve the original `## YYYY-MM-DD — [Title]` heading (creation date stays as-is)
+- Add a metadata block directly under the heading:
+  - `**Published:** YYYY-MM-DD` (actual publish date)
+  - `**URL:** https://www.linkedin.com/posts/...`
+  - `**Notes:** ...` (optional — engagement signal, follow-ups, lessons)
+- Remove the entry from `ready-posts.md` after the move (single source of truth: ready = unpublished, published = archive)
+- `published-posts.md` is the canonical archive; do NOT create individual published-post files
+
 **Post Review:**
 - Save revised posts as `output/reviews/YYYYMMDD-slug.md`
 
