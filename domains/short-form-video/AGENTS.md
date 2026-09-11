@@ -106,6 +106,7 @@ Format per batch:
 - Each sentence on a new line
 - Structure: **Hook → Value → CTA**
 - Hook must grab attention within the **first 2 seconds**
+- **Run the hook through `domains/short-form-video/references/hooks.md` before delivering** — all 7 checks (curiosity per word, stakes, zero-thought comprehension, payoff cadence, cut 20%, first-3-words test, promise the video keeps). Source of truth: `references/hooks.pdf`
 - Avoid generic openings
 - Avoid generic advice and filler phrases
 - Short, direct, punchy sentences
@@ -144,6 +145,7 @@ Save to **`output/shorts/scripts.md`** with this metadata block. Newest at top.
 - Maintain structure (Hook → Value → CTA)
 - Preserve the original idea and core message
 - Apply all Mode 2 rules
+- Re-run the hook against the `references/hooks.md` checklist — the hook is the first thing to rewrite, not the last
 - Deliver **only the improved script** in chat
 
 ### Output persistence
@@ -174,7 +176,7 @@ If the user provides a draft and asks a specific question (e.g., "is this hook t
    - Counter-intuitive claims
    - Specific data points or examples
    - Moments that could stand alone as a 60-second short
-3. **For each candidate, generate a fresh Mode 2 script** — apply ALL Mode 2 rules (hook → value → CTA, 130-150 words target, signature closer, register pick, etc.). Treat the candidate as an **idea seed**, NOT as text to clip verbatim. The script is original; the long-form provides the angle.
+3. **For each candidate, generate a fresh Mode 2 script** — apply ALL Mode 2 rules (hook → value → CTA, 130-150 words target, signature closer, register pick, hook checklist, etc.). Treat the candidate as an **idea seed**, NOT as text to clip verbatim. The script is original; the long-form provides the angle.
 4. **Save** all 3 scripts to `output/shorts/scripts.md` (newest at top), each with a `**Source:**` line pointing to the video + approximate timestamp + the anchor quote that inspired it.
 5. **Deliver** the 3 scripts in chat, separated by `---`, no preamble.
 
@@ -212,6 +214,24 @@ When delivering ideas (Mode 1):
 
 ---
 
+## HOOK RULES
+
+**Read `domains/short-form-video/references/hooks.md` before writing any hook** (Modes 2, 3 and 5).
+It is the distilled text version of `references/hooks.pdf`, which stays in the repo as the source of
+truth — read the PDF instead when PDF tooling is available or when the markdown looks out of date.
+
+The non-negotiables from that checklist:
+
+- The first **3-4 words** must already land simple, digestible information — that is where the swipe is decided
+- **Stakes from the first frame**: money, career, time, future, risk, reveal, conflict, huge consequence. No stakes → rewrite
+- **Zero thinking required** — the FYP rewards instant comprehension, not reflection
+- **5-9 words per second** for the first 3-5 seconds (unless the hook is silent/on-screen text)
+- **Cut ~20%** — if it still stands after removing 1-2 words, they were never needed
+- The hook must **promise something the script actually delivers**, otherwise good hook, dead retention
+- The hook is **also visual** — motion or action from frame one; neutrality kills it
+
+---
+
 ## VOICE CALIBRATION
 
 Short-form voice ≠ LinkedIn post voice ≠ comment voice. **Read `domains/short-form-video/STYLE_GUIDE.md` before drafting any script.** It contains the voice fingerprint distilled from `ideas/all_shorts_consolidated.md` — hook patterns, sentence rhythm, recurring phrases, CTAs, what to avoid.
@@ -230,10 +250,11 @@ Key differences from LinkedIn:
 
 1. The user's explicit request and constraints (length, tone, angle, topic)
 2. The input idea / topic / draft
-3. `domains/short-form-video/STYLE_GUIDE.md` for voice
-4. `ideas/all_shorts_consolidated.md` for raw style match (when STYLE_GUIDE is insufficient)
-5. `ideas/*_comments.md` and `ideas/discord_messages_consolidated.txt` for audience pain points (Mode 1 only)
-6. `domains/_shared/brand-and-voice.md` for cross-domain baseline
+3. `domains/short-form-video/references/hooks.md` (source: `references/hooks.pdf`) for hook construction
+4. `domains/short-form-video/STYLE_GUIDE.md` for voice
+5. `ideas/all_shorts_consolidated.md` for raw style match (when STYLE_GUIDE is insufficient)
+6. `ideas/*_comments.md` and `ideas/discord_messages_consolidated.txt` for audience pain points (Mode 1 only)
+7. `domains/_shared/brand-and-voice.md` for cross-domain baseline
 
 If the user's request and the brand voice conflict, surface the tension and ask before proceeding.
 
