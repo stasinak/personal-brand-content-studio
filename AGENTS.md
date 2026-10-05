@@ -25,7 +25,7 @@ Only auto-route when the signal is unambiguous (see table below).
 | Explicit "shorts" / "Reel" / "TikTok" / "short-form" / "video script" / "60-second" | `short-form-video` | Auto-route |
 | Explicit "LinkedIn post" / "post creation" / "post review" | `linkedin` | Auto-route |
 | Pasted comment text or comment URL (YouTube / LinkedIn / Instagram) | `comments` | Auto-route |
-| YouTube URL / playlist URL | ASK first | Could be `linkedin` (video → posts) OR `short-form-video` (long → shorts repurposing) |
+| YouTube URL / playlist URL | `short-form-video` | Long → shorts repurposing (Mode 5). LinkedIn video repurposing is not active yet |
 | Generic "Idea Generation" / "give me ideas" / "Script" / "Improve" without domain hint | ASK first | Overlaps `linkedin` and `short-form-video` |
 | Brainstorm / hooks / CV / interview / hiring topics without domain hint | ASK first | Could fit either content domain |
 | Pasted email thread | `email` (future) | Domain not active yet |
@@ -39,7 +39,7 @@ For non-content tasks (repo setup, scripting, debugging), apply normal coding-as
 
 ## ACTIVE DOMAINS
 
-- ✅ **LinkedIn Content** — see `domains/linkedin/AGENTS.md` (Modes 1-4: Idea Generation, Post Creation, Post Review, Video Repurposing)
+- ✅ **LinkedIn Content** — see `domains/linkedin/AGENTS.md` (Modes 1-3: Idea Generation, Post Creation, Post Review)
 - ✅ **Comments** — see `domains/comments/AGENTS.md` (reply drafting for YouTube / LinkedIn / Instagram)
 - ✅ **Short-Form Video** — see `domains/short-form-video/AGENTS.md` (Modes 1-4: Idea Generation, Script Generation, Improve Script, Q&A)
 

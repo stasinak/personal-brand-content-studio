@@ -1,6 +1,6 @@
 # LinkedIn Content Domain
 
-Rules for LinkedIn content tasks: Idea Generation, Post Creation, Post Review, Video Repurposing.
+Rules for LinkedIn content tasks: Idea Generation, Post Creation, Post Review.
 
 This domain inherits cross-domain brand & voice rules from `domains/_shared/brand-and-voice.md`. Format-specific rules below override or extend the shared baseline.
 
@@ -12,7 +12,6 @@ Apply these instructions for LinkedIn content tasks, including:
 - Idea Generation
 - Post Creation
 - Post Review
-- Video Repurposing
 - Repurposing notes into posts
 - Rewriting posts for clarity, tone, or engagement
 - Saving generated ideas and posts locally
@@ -43,8 +42,7 @@ At the start of every LinkedIn writing interaction, ask the user:
 
 1. Idea Generation
 2. Post Creation
-3. Post Review
-4. Video Repurposing"
+3. Post Review"
 
 Do not proceed with writing until the user selects a mode, unless the user has already clearly specified the mode in their request.
 
@@ -52,7 +50,6 @@ If the user request clearly maps to a mode, you may infer it:
 - Brainstorming topics or angles -> Idea Generation
 - Asking for a full post -> Post Creation
 - Asking to improve an existing draft -> Post Review
-- Providing a YouTube URL (or playlist URL) with extraction intent -> Video Repurposing
 
 ---
 
@@ -323,56 +320,6 @@ Review priorities:
 - Natural tone
 - Engagement potential
 - Distinctiveness of perspective
-
-### 4) Video Repurposing
-
-Triggered when the user provides a YouTube URL (single video or playlist) with intent to extract LinkedIn content from it.
-
-Output destinations:
-- **Ideas:** generated LinkedIn angles append to `output/idea-pool.md` per the standard flow
-- **Post:** a complete post appends to `output/ready-posts.md` per the standard flow
-- If the user does not specify "ιδέες ή post", ask once before proceeding
-
-**Source material acquisition (mandatory before generating):**
-
-Lookup order:
-1. Check `output/_transcripts/` for an existing file matching the video ID — if a transcript was previously fetched, reuse it (avoid re-fetch).
-2. Check `/ideas` for consolidated transcript files (Andreas's own Shift Happens content may be there).
-3. Otherwise, fetch via the skill and save to `output/_transcripts/`:
-   ```bash
-   uv run skills/youtube-transcript-fetcher/fetch.py <url> > output/_transcripts/<YYYYMMDD>-<video_id>.md 2>/tmp/fetch.stderr
-   ```
-   - Set Bash timeout to ~600000 ms (10 min) — Whisper fallback can take 1-5 min on CPU
-   - Redirect saves the CLEAN transcript file (stdout only); progress/errors go to stderr
-   - The skill tries 4 strategies internally (YouTube Data API → transcript-api → yt-dlp+cookies → Whisper local ASR). Whisper is the universal fallback that works on any public video.
-
-Filename convention: `output/_transcripts/<YYYYMMDD>-<video_id>.md`. Extract `<video_id>` from the URL (the 11-char ID after `watch?v=`, `shorts/`, or `youtu.be/`).
-
-After a successful fetch, the transcript file persists for future reuse and provenance.
-
-If automated fetch still fails (rare — typically only on network or unavailable videos), ASK the user to paste the transcript directly. Do not invent content from the title alone.
-
-Whisper model selection:
-- Default `--whisper-model small` is appropriate (good quality + reasonable speed)
-- `--whisper-model tiny` for fast/dirty drafts
-- `--whisper-model medium` or `large-v3` for highest quality on long-form content
-
-**Mining the transcript:**
-
-- Read for: key frames, specific quotable moments, practical takeaways, personal stories, contrarian claims, failed-then-recovered narratives
-- Pull verbatim phrasing where useful — Andreas's own voice patterns may already be in the transcript (especially for Shift Happens content)
-- Note timestamps when a post will reference a specific moment
-
-**Output behavior:**
-
-- **Ideas mode:** Generate 3 distinct LinkedIn-post angles derived from the video. Each angle must be its own crystallized takeaway, not a summary. Append to `idea-pool.md` per the standard flow, with a `*Source: YouTube — [video title]*` line appended to the *Γιατί δουλεύει* note for traceability.
-- **Post mode:** Build a complete post from the strongest single insight in the video. Apply all post creation rules (style guide, source material research, append to `ready-posts.md`). Add a `**Source video:** [title] — [URL]` line directly under the heading for provenance.
-
-**Brand discipline:**
-
-- Keep topic-weighting and brand-voice rules intact — even if the video covers something off-brand, only generate output that fits the brand's audience (career switchers + Greek juniors)
-- If the video is fundamentally off-brand for LinkedIn, say so explicitly rather than forcing a fit
-- Search and analyze the transcript in whatever language it is; the output ideas/post still follow the default-Greek rule
 
 ---
 

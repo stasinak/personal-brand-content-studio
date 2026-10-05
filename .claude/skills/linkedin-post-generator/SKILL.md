@@ -1,6 +1,6 @@
 ---
 name: linkedin-post-generator
-description: Write, review, and brainstorm LinkedIn content for Andreas Stasinakis in his Greek-first voice. Use for any LinkedIn writing task in this project — LinkedIn post ideas, writing a full post, reviewing or improving a draft post, turning notes or a YouTube video into LinkedIn posts, or archiving a published post. Triggers on "LinkedIn post", "post creation", "post review", "ιδέες για post", "γράψε post", "κάνε review στο post".
+description: Write, review, and brainstorm LinkedIn content for Andreas Stasinakis in his Greek-first voice. Use for any LinkedIn writing task in this project — LinkedIn post ideas, writing a full post, reviewing or improving a draft post, turning notes into LinkedIn posts, or archiving a published post. Triggers on "LinkedIn post", "post creation", "post review", "ιδέες για post", "γράψε post", "κάνε review στο post".
 ---
 
 # LinkedIn Post Generator
@@ -18,7 +18,8 @@ Read these two files in full, in this order:
 
 ## Modes
 
-Use the four modes defined in `domains/linkedin/AGENTS.md`: Idea Generation, Post Creation, Post Review, Video Repurposing.
+Use the three modes defined in `domains/linkedin/AGENTS.md`: Idea Generation, Post Creation, Post Review.
+YouTube / video input is not supported in this skill yet — if the user gives a YouTube URL, say so and ask them to paste the relevant text instead.
 If the request does not clearly map to one, ask once which mode to use (the exact prompt is in the domain file).
 
 ## Saving output
