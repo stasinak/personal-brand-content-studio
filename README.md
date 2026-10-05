@@ -54,7 +54,7 @@ LinkedIn outputs live in `output/` as a few canonical Markdown files, as defined
 - `output/published-posts.md` — archive of published posts, newest first
 - `output/reviews/YYYYMMDD-slug.md` — reviewed drafts
 
-LinkedIn writing tasks run through the Claude Code skill `.claude/skills/linkedin-post-generator/` (invoke with `/linkedin-post-generator` or just ask for a LinkedIn post). All LinkedIn rules live in that folder (`SKILL.md` + `references/style-guide.md`); it also loads the shared `domains/_shared/brand-and-voice.md`.
+LinkedIn writing tasks run through the Claude Code skill `.claude/skills/linkedin-post-generator/` (invoke with `/linkedin-post-generator` or just ask for a LinkedIn post). All LinkedIn rules live in that folder (`SKILL.md` + `references/style-guide.md`). The skill is self-contained; `domains/_shared/brand-and-voice.md` remains only for the comments and short-form-video domains.
 
 ## LinkedIn Publishing MVP
 

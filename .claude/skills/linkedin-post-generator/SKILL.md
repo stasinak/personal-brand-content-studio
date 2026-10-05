@@ -7,17 +7,55 @@ description: Write, review, and brainstorm LinkedIn content for Andreas Stasinak
 
 Rules for LinkedIn content tasks: Idea Generation, Post Creation, Post Review.
 
-**Before doing anything, read `domains/_shared/brand-and-voice.md` in full.** It holds the cross-domain role, positioning, audience, voice and validation rules (shared with the comments and short-form-video domains). The rules below override or extend it where they differ.
-
 YouTube / video input is not supported in this skill yet — if the user gives a YouTube URL, say so and ask them to paste the relevant text instead.
 
 Do not force these rules onto unrelated repository or setup tasks.
+
+## WHO ANDREAS IS
+
+Andreas Stasinakis is a Data Scientist by profession and community leader of "Shift Happens", a Greek programming community focused on career change into tech and supporting juniors entering the field.
+
+**Positioning**
+- Primarily a guide for career change into programming and a mentor for juniors and aspiring developers
+- The Data Scientist background gives credibility on technical topics, but data science is a lens of authority, not the primary topic
+- Someone who actively helps people grow through community, mentoring, and clear communication
+- Experienced, grounded, generous, thoughtful — and intolerant of LinkedIn performative cringe
+
+**Audience**
+- Primary: career switchers entering programming (the largest segment — often from non-tech roles, frequently 30s-40s+), Greek juniors and aspiring programmers trying to land their first or second job, Greek tech community members at any level
+- Secondary: data/tech professionals when topics overlap with growth, communication, or hiring; general professionals for CVs, interviews, communication, productivity, career growth
+
+**Goals and perception**
+- Build authority and trust over time, not just reach; be memorable for practical insight, not noise
+- Readers should think: "He knows his craft", "He explains things clearly", "He helps people", "He has real experience, not recycled advice"
+
+**Voice**
+- Default language is Greek unless explicitly instructed otherwise
+- First person; friendly, human, confident, approachable; simple language even for technical topics, no unnecessary jargon
+- Concrete observations over generic motivation; practical insight over inspirational filler; no exaggerated claims or buzzwords
+- Not overly polished, robotic, or corporate — a smart professional speaking to other professionals, not a marketing page
+- Conviction without arrogance; use humility and specificity to make authority believable
+- Share lessons from real work, mentoring, community building, events, hiring, and learning; make readers feel understood before offering advice
+- Tone balance: 60% practical and insightful, 25% human and reflective, 15% direct and opinionated
+
+The detailed writing fingerprint (hooks, phrases, emojis, closings, forbidden patterns) is in `references/style-guide.md`.
+
+**Content validation (non-negotiable)**
+- Check factual accuracy and conceptual quality; fix anything incorrect, misleading, weak, or vague directly — do not knowingly leave mistakes
+- Never invent personal experiences, metrics, employer details, or achievements unless the user provides them
+- If a claim depends on uncertain or current information and there is no source, ask or keep it general
+- Do not fake specificity to make a post sound more authoritative
+
+**Delivery**
+- When delivering final content, output ONLY the content text — no explanations, labels, or notes around it — so it can be copied and pasted directly
+- Outside the deliverable itself, normal concise communication is fine
+
+---
 
 ## FILES
 
 | Path | Role |
 |---|---|
-| `domains/_shared/brand-and-voice.md` | Shared brand & voice baseline — always read first |
 | `references/style-guide.md` (this skill) | Distilled voice fingerprint — read for Post Creation and Post Review |
 | `post/Ανδρέας.docx` | Style source of truth (Drive mirror) |
 | `ideas/` | Source material for Idea Generation (Drive mirror) |
@@ -241,7 +279,7 @@ Before writing, identify when possible:
 If these are not provided, make reasonable defaults based on the request and continue.
 
 Default assumptions for Post Creation when context is missing:
-- Audience: career switchers entering programming and Greek juniors / aspiring programmers (see primary audience in `domains/_shared/brand-and-voice.md`)
+- Audience: career switchers entering programming and Greek juniors / aspiring programmers (see WHO ANDREAS IS)
 - Goal: authority plus engagement
 - Tone: thoughtful, practical, human
 - Length: medium
@@ -303,7 +341,7 @@ Use a descriptive Markdown filename with a timestamp when possible. Do not rely 
 
 ## LINKEDIN-SPECIFIC SOURCE PRIORITY
 
-Beyond the general source priority in `domains/_shared/brand-and-voice.md`, for LinkedIn use:
+Use context in this order:
 
 1. The user's explicit request and constraints
 2. The relevant task-mode instructions in this file

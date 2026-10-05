@@ -170,10 +170,7 @@ Distilled style reference για LinkedIn posts. Πηγή: `Ανδρέας.docx`
 
 ## 12. Tone balance
 
-Από `AGENTS.md`:
-- 60% practical and insightful
-- 25% human and reflective
-- 15% direct and opinionated
+60% practical / 25% human / 15% opinionated — ορίζεται στο `SKILL.md` (WHO ANDREAS IS).
 
 Το opinionated 15% είναι εκεί που ζει το brand. Δεν ξύνεται.
 
