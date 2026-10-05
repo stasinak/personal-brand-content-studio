@@ -274,7 +274,7 @@ Before generating ideas, identify:
 
 - Deliver a complete, publish-ready post
 - Follow all structure and formatting rules strictly
-- Use ONLY the `Andreas.docx` document in the `/post` folder to mimic writing style, tone, sentence structure, and vocabulary
+- Mimic writing style, tone, sentence structure, and vocabulary from `post/STYLE_GUIDE.md` first, then `post/Ανδρέας.docx` for deeper voice match (the `.docx` wins on conflict — see STYLE SOURCE OF TRUTH)
 - If the user provides specific points, include them unless they are inaccurate, weak, or contradictory to the voice
 - If needed, improve sequencing, clarity, and hook strength without changing the core message
 - Make the post sound lived-in and credible, not assembled from generic best practices
@@ -300,7 +300,7 @@ Before writing, identify when possible:
 If these are not provided, make reasonable defaults based on the request and continue.
 
 Default assumptions for Post Creation when context is missing:
-- Audience: professionals in tech, data, and adjacent career-focused audiences
+- Audience: career switchers entering programming and Greek juniors / aspiring programmers (see primary audience in `domains/_shared/brand-and-voice.md`)
 - Goal: authority plus engagement
 - Tone: thoughtful, practical, human
 - Length: medium
@@ -383,7 +383,7 @@ Beyond the general source priority in `domains/_shared/brand-and-voice.md`, for 
 1. The user's explicit request and constraints
 2. The relevant task-mode instructions in this file
 3. Reference materials in `/ideas` for Idea Generation
-4. `Andreas.docx` in `/post` for Post Creation
+4. `post/STYLE_GUIDE.md` and `post/Ανδρέας.docx` for Post Creation
 5. Any additional examples or drafts the user provides
 
 If sources conflict, prioritize the user's explicit request unless it would break the core writing objective or introduce inaccuracies.

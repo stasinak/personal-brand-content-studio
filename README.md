@@ -47,30 +47,14 @@ That file currently defines rules such as:
 
 ## Output
 
-All generated outputs should be stored in `output/` as Markdown files, split by mode:
+LinkedIn outputs live in `output/` as a few canonical Markdown files, as defined in `domains/linkedin/AGENTS.md`:
 
-- `output/ideas/`
-- `output/ready-posts/`
-- `output/reviews/`
+- `output/idea-pool.md` — active (unpublished) ideas
+- `output/ready-posts.md` — finished posts waiting to be published, newest first
+- `output/published-posts.md` — archive of published posts, newest first
+- `output/reviews/YYYYMMDD-slug.md` — reviewed drafts
 
-For LinkedIn tasks handled through the project skill, prefer the bundled save helper:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\skills\linkedin-post-generator\scripts\save-output.ps1 -Mode post -Content $postText -Slug "networking-is-long-term"
-```
-
-Naming convention:
-
-- use a descriptive topic slug
-- keep the filename readable without opening the file
-
-Example paths:
-
-```text
-output/ideas/20260328-junior-candidate-signals.md
-output/ready-posts/20260328-networking-is-long-term.md
-output/reviews/20260328-community-building-consistency.md
-```
+LinkedIn writing tasks run through the Claude Code skill `.claude/skills/linkedin-post-generator/` (invoke with `/linkedin-post-generator` or just ask for a LinkedIn post). The skill loads `domains/_shared/brand-and-voice.md` and `domains/linkedin/AGENTS.md` as its rules.
 
 ## LinkedIn Publishing MVP
 
@@ -251,8 +235,11 @@ personal-brand-content-studio/
   scripts/
     google-drive-mvp.ps1
     linkedin-mvp.ps1
+  .claude/
+    skills/
+      linkedin-post-generator/
+  domains/
   skills/
-    linkedin-post-generator/
   ideas/
   post/
     Ανδρέας.docx
