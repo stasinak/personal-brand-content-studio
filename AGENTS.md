@@ -39,7 +39,7 @@ For non-content tasks (repo setup, scripting, debugging), apply normal coding-as
 
 ## ACTIVE DOMAINS
 
-- ✅ **LinkedIn Content** — see `domains/linkedin/AGENTS.md` (Modes 1-3: Idea Generation, Post Creation, Post Review)
+- ✅ **LinkedIn Content** — see `.claude/skills/linkedin-post-generator/SKILL.md` (Modes 1-3: Idea Generation, Post Creation, Post Review)
 - ✅ **Comments** — see `domains/comments/AGENTS.md` (reply drafting for YouTube / LinkedIn / Instagram)
 - ✅ **Short-Form Video** — see `domains/short-form-video/AGENTS.md` (Modes 1-4: Idea Generation, Script Generation, Improve Script, Q&A)
 
@@ -55,7 +55,7 @@ Future domains will be added here as they come online (`email`, `meeting-notes`,
 
 ## DOMAIN-SPECIFIC RULES (always loaded for active domains)
 
-@domains/linkedin/AGENTS.md
+@.claude/skills/linkedin-post-generator/SKILL.md
 
 @domains/comments/AGENTS.md
 

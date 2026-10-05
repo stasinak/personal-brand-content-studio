@@ -47,14 +47,14 @@ That file currently defines rules such as:
 
 ## Output
 
-LinkedIn outputs live in `output/` as a few canonical Markdown files, as defined in `domains/linkedin/AGENTS.md`:
+LinkedIn outputs live in `output/` as a few canonical Markdown files, as defined in the LinkedIn skill (`.claude/skills/linkedin-post-generator/SKILL.md`):
 
 - `output/idea-pool.md` — active (unpublished) ideas
 - `output/ready-posts.md` — finished posts waiting to be published, newest first
 - `output/published-posts.md` — archive of published posts, newest first
 - `output/reviews/YYYYMMDD-slug.md` — reviewed drafts
 
-LinkedIn writing tasks run through the Claude Code skill `.claude/skills/linkedin-post-generator/` (invoke with `/linkedin-post-generator` or just ask for a LinkedIn post). The skill loads `domains/_shared/brand-and-voice.md` and `domains/linkedin/AGENTS.md` as its rules.
+LinkedIn writing tasks run through the Claude Code skill `.claude/skills/linkedin-post-generator/` (invoke with `/linkedin-post-generator` or just ask for a LinkedIn post). All LinkedIn rules live in that folder (`SKILL.md` + `references/style-guide.md`); it also loads the shared `domains/_shared/brand-and-voice.md`.
 
 ## LinkedIn Publishing MVP
 

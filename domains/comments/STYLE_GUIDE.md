@@ -2,7 +2,7 @@
 
 Distilled style reference για short-form replies σε YouTube / LinkedIn / Discord / Instagram comments. Πηγή: 100+ replies από `/ideas/all_shorts_comments.md` και `/ideas/all_videos_comments.md` (Shift Happens YouTube channel).
 
-> **Διαφορετικό universe από το long-form `post/STYLE_GUIDE.md`.** Replies είναι σύντομα, συχνά μόνο-emoji, χωρίς structure (no hook/body/CTA), και μιλάμε σε **πληθυντικό** ως ομάδα ("ευχαριστούμε") — όχι σε πρώτο πρόσωπο.
+> **Διαφορετικό universe από το long-form `.claude/skills/linkedin-post-generator/references/style-guide.md`.** Replies είναι σύντομα, συχνά μόνο-emoji, χωρίς structure (no hook/body/CTA), και μιλάμε σε **πληθυντικό** ως ομάδα ("ευχαριστούμε") — όχι σε πρώτο πρόσωπο.
 
 ---
 
@@ -168,7 +168,7 @@ Distilled style reference για short-form replies σε YouTube / LinkedIn / Di
 
 ---
 
-## 9. Differences vs long-form post voice (`post/STYLE_GUIDE.md`)
+## 9. Differences vs long-form post voice (`.claude/skills/linkedin-post-generator/references/style-guide.md`)
 
 | Dimension | Long-form posts | Comment replies |
 |---|---|---|

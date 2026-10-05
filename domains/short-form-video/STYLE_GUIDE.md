@@ -2,7 +2,7 @@
 
 Distilled style reference for short-form video scripts (YouTube Shorts / Instagram Reels / TikTok) in Andreas's voice. Source: `/ideas/all_shorts_consolidated.md` — 300 shorts from the Shift Happens YouTube channel, ~38k transcript words. Generated: **2026-04-30**.
 
-> **Different universe from `post/STYLE_GUIDE.md` (long-form LinkedIn) and `domains/comments/STYLE_GUIDE.md` (replies).** Shorts are spoken, not written. Median 135 words. Hook in 2 seconds or you lose them. CTA at the end is soft, often the same signature line.
+> **Different universe from `.claude/skills/linkedin-post-generator/references/style-guide.md` (long-form LinkedIn) and `domains/comments/STYLE_GUIDE.md` (replies).** Shorts are spoken, not written. Median 135 words. Hook in 2 seconds or you lose them. CTA at the end is soft, often the same signature line.
 
 ---
 
